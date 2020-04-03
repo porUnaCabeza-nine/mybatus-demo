@@ -1,0 +1,61 @@
+server:
+  port: 90
+#  servlet:
+#    context-path: /mengmeng
+
+#  servlet: demo
+
+spring:
+  profiles:
+      active: mysql-dev
+  aop:
+
+      proxy-target-class: true
+      auto: true
+
+  datasource:
+        url: jdbc:mysql://127.0.0.1:3306/jfmngplat?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.jdbc.Driver
+
+  redis:
+    database: 3
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        #连接池中最大连接数 高版本：maxTotal，低版本：maxActive
+        max-active: 8
+        #当连接池资源耗尽时，调用者最大阻塞的时间，超时将跑出异常。
+        #单位，毫秒数;默认为-1.表示永不超时。高版本：maxWaitMillis，低版本：maxWait
+        max-wait: 1000
+        #最大空闲数，数据库连接的最大空闲时间。超过空闲时间，数据库连
+         #接将被标记为不可用，然后被释放。设为0表示无限制。
+        max-idle: 8
+        #指定必须保持连接的最小值
+        min-idle: 2
+
+
+  freemarker:
+    suffix: .ftl
+
+
+
+    #设置引用路径，
+  mvc:
+    static-path-pattern: /static/**
+
+    #图片上传位置
+zvmng:
+   imagePath: E:/image/
+   #EMQX 配置信息
+   mqtt:
+      mqtt-host: tcp://127.0.0.1:1883
+      cleanSession: false  #设为false，MQTT服务器将持久化客户端会话的主体订阅和ACK位置，默认为true
+      keepAlive: 10  #定义客户端传来消息的最大时间间隔秒数，服务器可以据此判断与客户端的连接是否已经断开，从而避免TCP/IP超时的长时间等待
+      uname: admin  # emqx服务器的认证用户名 及密码
+      pwd: admin
+
+
